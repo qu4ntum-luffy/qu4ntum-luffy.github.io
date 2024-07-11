@@ -147,7 +147,8 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-url: "https://qu4ntum-luffy.github.io/"
+baseurl: ""
+
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:

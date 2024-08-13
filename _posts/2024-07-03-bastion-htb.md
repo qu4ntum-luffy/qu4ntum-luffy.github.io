@@ -1,4 +1,9 @@
-
+---
+title: "Bastion HTB"
+date: 2024-07-02 21:55:00 +0800
+categories: [Bastion, Medium, HTB-Walkthrough]
+tags: [Bastion]
+---
 
 
 ![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*tbBSIIDs8IMC6JiZwCU_jg.png)

@@ -1,0 +1,14 @@
+/* Style the image container to display items in a vertical column */
+.image-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers images horizontally */
+    gap: 1rem; /* Space between images, adjust as needed */
+  }
+  
+  /* Ensure images are responsive */
+  .image-column img {
+    max-width: 100%;
+    height: auto;
+  }
+  

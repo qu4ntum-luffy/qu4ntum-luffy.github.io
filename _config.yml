@@ -146,6 +146,9 @@ pwa:
 
 paginate: 10
 
+styles:
+  - "/assets/css/custom.css"
+
 # The base URL of your site
 baseurl: ""
 

@@ -6,7 +6,7 @@ order: 2
 
 **WHOAMI**
 
-Firstly Hello there, Thanks for taking time. Getting to know me.
+Firstly Hello there😎, Thanks for taking time. Getting to know me.
 
 <div style="display: flex; align-items: center;">
 <div class="image-column">

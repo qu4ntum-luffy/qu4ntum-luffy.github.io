@@ -2,7 +2,7 @@
 title: "Upgrading Shells"
 date: 2024-07-02 21:55:00 +0800
 categories: [Shells-Upgrade, Meterpreter]
-tags: [Devel, Easy-Level, Windows-PrivEsc]
+tags: [Upgrading-Shells, Windows-PrivEsc]
 ---
 
 ![Untitled](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*aSMEYEGhZ3fI9vaMPz8LJg.png)

@@ -14,14 +14,27 @@ Firstly Hello there😎, Thanks for taking time. Getting to know me.
    <img src="/assets/img/secure.png" alt="Icon" style="margin-right: 10px; width: 40px; height: 40px;display: block; margin: 0 auto;" />
   </div>
   <span>I am Eshwar Janjirala, A Recent Cybersecurity Grad. <br>The reason I got into security was pure madness over Watch Dogs & Mr. Robot Series. Enough fictional!! I r'ly really love security💘.</span>
-  <i>--> From my first hackerone duplicate to actively doing bug bounty on Synack Red Team though Confidential. I love it doing daily.</i>
-  --> From Failing at certs like PNPT to Successfully passing OSCP.
-  --> Failing at CTFs to Champing at CTF', Becoming little CTF organizer for juniors.
-  
+  <br>
+  <br>
+  <i>👉 From my first hackerone duplicate to actively engaged in bug bounty at Synack Red Team. I love it doing daily.</i>
+  <br>
+  <br>
+  👉 From Failing at certs like PNPT to Successfully passing OSCP. And many other ctfs & certs to come.
+  <br>
+  <br>
+  👉 Failing at CTFs to Champing at CTF', Becoming little CTF organizer for juniors.
+  <br>
+  <br>
+  🎯 Currently shooting arrows at CRTO, BSCP & OSEP.
+  <br>
+  <br>
+  🤺 More stories of me exploring into Security at https://medium.com/@eshwarjanjirala
 </div>
+<br>
+<br>
 
-Getting more & more tryhardership with getting closer towards my OSEP Certification. If you are on the same journey at <a href="https://www.linkedin.com/in/eshwar-janjirala">Visit Linkedin</a>
- handle. Feel free to reach me out, Or a Hi. I Love levelling up with co-security rockstars.
+Getting more & more tryhardership with getting closer towards my OSEP Certification. If you are on the same journey at <a href="https://www.linkedin.com/in/eshwar-janjirala">Linkedin</a>
+ handle🤝. Feel free to reach me out, Or a Hi. I Love levelling up with co-security rockstars.
 
 <br><br>
 

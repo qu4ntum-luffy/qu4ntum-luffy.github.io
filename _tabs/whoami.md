@@ -30,7 +30,7 @@ Firstly Hello there😎, Thanks for taking time. Getting to know me.
   🎯 Currently shooting arrows at CRTO, BSCP & OSEP.
   <br>
   <br>
-  🤺 More stories of me exploring into Security at https://medium.com/@eshwarjanjirala</div>
+  🤺 More stories of me exploring into Security at <a href="https://medium.com/@eshwarjanjirala">Medium</a></div>
 <br>
 <br>
 
@@ -49,6 +49,6 @@ Getting more & more tryhardership with getting closer towards my OSEP Certificat
 <br><br>
 
 
-The sole reason for me to start this website for me to full enabling to checkback with the htb machines walkthroughs back & forth. And make continous writing a hobby. Though Medium was a great platform... It is a bit messy for searching around the things you wanted, this template are a bit easy to access for my ownself. Feel free to access my medium blogs which were definitely latest... Cause I might take a bit getting those things here... <a href="https://medium.com/@eshwarjanjirala">Access Medium?</a>
+The sole reason for me to start this website for me to full enabling to checkback with the htb machines walkthroughs back & forth. And make continous writing a hobby. Though Medium was a great platform... It is a bit messy for searching around the things you wanted, Sorry for the inconvenience, We've been working on CTF website soon. This page will be back up for the solutions. Please stay tuned🎧 until then. 
 
 {: .prompt-tip }

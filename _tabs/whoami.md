@@ -15,7 +15,8 @@ Firstly Hello there😎, Thanks for taking time. Getting to know me.
   </div>
   <span>I am Eshwar Janjirala, A Recent Cybersecurity Grad. <br>The reason I got into security was pure obsession & madness over Watch Dogs & Mr. Robot Series making it to reality, Understanding how terrific it can transform the world if not handled well. Enough fictional!! I r'ly really love security💘.</span>
 </div>
-<div><br>
+<br>
+  <br>
   <br>
   <i>👉 From my first hackerone duplicate to actively engaged in bug bounty at Synack Red Team. I love it doing daily.</i>
   <br>

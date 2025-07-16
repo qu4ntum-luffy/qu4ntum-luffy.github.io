@@ -14,7 +14,8 @@ Firstly Hello there😎, Thanks for taking time. Getting to know me.
    <img src="/assets/img/secure.png" alt="Icon" style="margin-right: 10px; width: 40px; height: 40px;display: block; margin: 0 auto;" />
   </div>
   <span>I am Eshwar Janjirala, A Recent Cybersecurity Grad. <br>The reason I got into security was pure obsession & madness over Watch Dogs & Mr. Robot Series making it to reality, Understanding how terrific it can transform the world if not handled well. Enough fictional!! I r'ly really love security💘.</span>
-  <br>
+</div>
+<div><br>
   <br>
   <i>👉 From my first hackerone duplicate to actively engaged in bug bounty at Synack Red Team. I love it doing daily.</i>
   <br>
@@ -28,8 +29,7 @@ Firstly Hello there😎, Thanks for taking time. Getting to know me.
   🎯 Currently shooting arrows at CRTO, BSCP & OSEP.
   <br>
   <br>
-  🤺 More stories of me exploring into Security at https://medium.com/@eshwarjanjirala
-</div>
+  🤺 More stories of me exploring into Security at https://medium.com/@eshwarjanjirala</div>
 <br>
 <br>
 
